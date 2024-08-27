@@ -39,10 +39,10 @@ function Weather() {
                 type = "text"
                 placeholder='search city'
                 onChange={(e) => setSearch(e.target.value)}
-                className='mr-5 bg-amber-500'
+                className='mr-5 bg-amber-500 border-2 border-stone-900 rounded-md p-2'
             />
 
-            <button onClick={searchPressed}>Search</button>
+            <button onClick={searchPressed} className='border-2 border-stone-900 rounded-md p-2'>Search</button>
 
             {typeof weather.main != "undefined" ? (
              <div className=''>
