@@ -19,13 +19,11 @@ function Weather() {
         .then(res => res.json())
         .then((result) => {
             setWeather(result)
-            console.log(result)
         })
-        fetch(`${api.forecastBase}weather?q=${search}&appid=${api.key}`)
+        fetch(`${api.forecastBase}forecast?q=${search}&cnt=4&appid=${api.key}&units=imperial`)
             .then(res => res.json())
             .then((result) => {
                 setForecast(result)
-                console.log(result)
             })
     }
 
@@ -48,6 +46,7 @@ function Weather() {
              <div className=''>
                
                 {/*Temprature */}
+                <p>Weather Now</p>
                 <p className='flex justify-center'>{weather.main.temp}°F</p>
                 
                 <img
@@ -64,18 +63,43 @@ function Weather() {
                 
                 <div>
                     {/*hourly forecast */}
-                    <p></p>
+                    
 
                 </div>
              </div>
             ):(
             ""
             )}
+            <br></br>
+            <div className='border-2 border-stone-900 rounded-md p-2'>
+           {typeof forecast != 'undefined' ? ( <div>
+                {forecast.list.map((item , index) => (
+                 
+                 <div key={index} className="">
+                    <p className='flex justify-center'>Weather {index*3+3} hours from now</p>
+                    <p className='flex justify-center'>Min temp: {item.main.temp_min}°F</p>
+                    <p className='flex justify-center'>Max temp: {item.main.temp_max}°F</p>
+                    <img
+                        src={`${iconUrlBase}${item.weather[0].icon}@2x.png`}
+                        alt={item.weather[0].description}
+                        className='mx-auto'
+                    />
+                    <p className='flex justify-center'>Condition: {item.weather[0].description}</p>
+                    <br></br>
+                 </div>
 
-           
+                ))}
 
+            </div>
+            ) : ( 
+            ""
+            )}
+
+           </div>           
         </div>
-       
+        
+
+        
         
     )
 }
