@@ -24,11 +24,12 @@ function Weather() {
             .then(res => res.json())
             .then((result) => {
                 setForecast(result)
+                console.log(result)
             })
     }
 
     return(
-        <div className='border-2 border-stone-900 rounded-md p-2 bg-amber-500'>
+        <div className='border-2 border-stone-900 rounded-md p-2 bg-gradient-to-r from-yellow-500 to-pink-500'>
 
 
             {/* search */}
@@ -37,7 +38,7 @@ function Weather() {
                 type = "text"
                 placeholder='search city'
                 onChange={(e) => setSearch(e.target.value)}
-                className='mr-5 bg-amber-500 border-2 border-stone-900 rounded-md p-2'
+                className='mr-5 bg-gradient-to-r from-yellow-500 to-pink-500 border-2 border-stone-900 rounded-md p-2'
             />
 
             <button onClick={searchPressed} className='border-2 border-stone-900 rounded-md p-2'>Search</button>
@@ -46,7 +47,7 @@ function Weather() {
              <div className=''>
                
                 {/*Temprature */}
-                <p>Weather Now</p>
+                <p className='flex justify-center'>Weather Now</p>
                 <p className='flex justify-center'>{weather.main.temp}°F</p>
                 
                 <img
@@ -71,14 +72,16 @@ function Weather() {
             ""
             )}
             <br></br>
+            
             <div className='border-2 border-stone-900 rounded-md p-2'>
-           {typeof forecast != 'undefined' ? ( <div>
+             {typeof forecast.list != 'undefined' ? ( 
+             <div className='flex flex-row'>
                 {forecast.list.map((item , index) => (
                  
-                 <div key={index} className="">
-                    <p className='flex justify-center'>Weather {index*3+3} hours from now</p>
-                    <p className='flex justify-center'>Min temp: {item.main.temp_min}°F</p>
-                    <p className='flex justify-center'>Max temp: {item.main.temp_max}°F</p>
+                 <div key={index} className="flex flex-col p-5">
+                    <p className='flex justify-center border-2 border-stone-900 rounded-md '>{new Date(item.dt * 1000).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                    <p className='flex justify-center'>Low: {item.main.temp_min}°F</p>
+                    <p className='flex justify-center'>High: {item.main.temp_max}°F</p>
                     <img
                         src={`${iconUrlBase}${item.weather[0].icon}@2x.png`}
                         alt={item.weather[0].description}
@@ -91,6 +94,7 @@ function Weather() {
                 ))}
 
             </div>
+            
             ) : ( 
             ""
             )}
