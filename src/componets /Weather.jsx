@@ -29,22 +29,22 @@ function Weather() {
     }
 
     return(
-        <div className='border-2 border-stone-900 rounded-md p-2 bg-gradient-to-r from-yellow-500 to-pink-500'>
+        <div className='border-2 border-stone-900 rounded-md p-2 bg-gradient-to-r from-stone-400 to-blue-500'>
 
 
             {/* search */}
           
             <input
                 type = "text"
-                placeholder='search city'
+                placeholder='search city...'
                 onChange={(e) => setSearch(e.target.value)}
-                className='mr-5 bg-gradient-to-r from-yellow-500 to-pink-500 border-2 border-stone-900 rounded-md p-2'
+                className='mr-5 bg-gradient-to-r from-stone-400 to-blue-500 border-2 border-white rounded-md p-2 text-white placeholder-white'
             />
 
-            <button onClick={searchPressed} className='border-2 border-stone-900 rounded-md p-2'>Search</button>
+            <button onClick={searchPressed} className='border-2 border-white rounded-md p-2 text-white'>Search</button>
 
             {typeof weather.main != "undefined" ? (
-             <div className=''>
+             <div className='text-white'>
                
                 {/*Temprature */}
                 <p className='flex justify-center'>Weather Now</p>
@@ -73,13 +73,13 @@ function Weather() {
             )}
             <br></br>
             
-            <div className='border-2 border-stone-900 rounded-md p-2'>
+            <div className='border-2 border-white rounded-md p-2'>
              {typeof forecast.list != 'undefined' ? ( 
              <div className='flex flex-row'>
                 {forecast.list.map((item , index) => (
                  
-                 <div key={index} className="flex flex-col p-5">
-                    <p className='flex justify-center border-2 border-stone-900 rounded-md '>{new Date(item.dt * 1000).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                 <div key={index} className="flex flex-col p-5 text-white">
+                    <p className='flex justify-center border-2 border-white rounded-md '>{new Date(item.dt * 1000).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</p>
                     <p className='flex justify-center'>Low: {item.main.temp_min}°F</p>
                     <p className='flex justify-center'>High: {item.main.temp_max}°F</p>
                     <img
