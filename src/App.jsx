@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Title from './componets /Title.jsx'
 import Weather from './componets /Weather.jsx'
+import Footer from './componets /Footer.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,6 +16,7 @@ function App() {
     <div className='place-self-center flex items-center justify-center'>
       <Weather />
      </div> 
+     <Footer/>
     </>
   )
 }

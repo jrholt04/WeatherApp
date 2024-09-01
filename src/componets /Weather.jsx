@@ -41,7 +41,7 @@ function Weather() {
                 className='mr-5 bg-gradient-to-r from-stone-400 to-blue-500 border-2 border-white rounded-md p-2 text-white placeholder-white'
             />
 
-            <button onClick={searchPressed} className='border-2 border-white rounded-md p-2 text-white'>Search</button>
+            <button id='submitButton' onClick={searchPressed} className='border-2 border-white rounded-md p-2 text-white'>Search</button>
 
             {typeof weather.main != "undefined" ? (
              <div className='text-white'>
@@ -73,7 +73,7 @@ function Weather() {
             )}
             <br></br>
             
-            <div className='border-2 border-white rounded-md p-2'>
+            <div className='p-2'>
              {typeof forecast.list != 'undefined' ? ( 
              <div className='flex flex-row'>
                 {forecast.list.map((item , index) => (
