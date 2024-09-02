@@ -81,7 +81,7 @@ function Weather() {
              <div className='flex flex-row'>
                 {forecast.list.map((item , index) => (
                  
-                    index % 12 == 0 || index ==  16 ? (
+                    index % 12 == 0  ? (
                         <div key={index} className="flex flex-col p-5 text-white">
                             <p className='flex justify-center border-2 border-white rounded-md '>{new Date(item.dt * 1000).toLocaleString([], { year: '2-digit', month: '2-digit', day: '2-digit' })}</p>
                             <p className='flex justify-center'>Low: {item.main.temp_min}°F</p>
