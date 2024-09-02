@@ -54,7 +54,7 @@ function Weather() {
              <div className='text-white'>
                
                 {/*Temprature */}
-                <p className='flex justify-center'>Weather Now</p>
+                <p className='flex justify-center'>Now</p>
                 <p className='flex justify-center'>{weather.main.temp}°F</p>
                 
                 <img
