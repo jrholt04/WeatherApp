@@ -20,12 +20,17 @@ function Weather() {
         .then((result) => {
             setWeather(result)
         })
-        fetch(`${api.forecastBase}forecast?q=${search}&cnt=4&appid=${api.key}&units=imperial`)
+        fetch(`${api.forecastBase}forecast?q=${search}&appid=${api.key}&units=imperial`)
             .then(res => res.json())
             .then((result) => {
                 setForecast(result)
                 console.log(result)
             })
+    }
+
+    const resetSearch = () => {
+        setForecast([])
+        setWeather([])
     }
 
     return(
@@ -42,6 +47,8 @@ function Weather() {
             />
 
             <button id='submitButton' onClick={searchPressed} className='border-2 border-white rounded-md p-2 text-white'>Search</button>
+
+            <button id='resetButton' onClick={resetSearch} className='border-2 border-white rounded-md p-2 text-white mx-2'>Reset</button>
 
             {typeof weather.main != "undefined" ? (
              <div className='text-white'>
@@ -62,35 +69,35 @@ function Weather() {
                 {/* condition */}
                 <p className='flex justify-center'>{weather.weather[0].description}</p>
                 
-                <div>
-                    {/*hourly forecast */}
-                    
-
-                </div>
              </div>
             ):(
             ""
             )}
             <br></br>
             
+            {/* daily forecast */}
             <div className='p-2'>
              {typeof forecast.list != 'undefined' ? ( 
              <div className='flex flex-row'>
                 {forecast.list.map((item , index) => (
                  
-                 <div key={index} className="flex flex-col p-5 text-white">
-                    <p className='flex justify-center border-2 border-white rounded-md '>{new Date(item.dt * 1000).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}</p>
-                    <p className='flex justify-center'>Low: {item.main.temp_min}°F</p>
-                    <p className='flex justify-center'>High: {item.main.temp_max}°F</p>
-                    <img
-                        src={`${iconUrlBase}${item.weather[0].icon}@2x.png`}
-                        alt={item.weather[0].description}
-                        className='mx-auto'
-                    />
-                    <p className='flex justify-center'>Condition: {item.weather[0].description}</p>
-                    <br></br>
-                 </div>
-
+                    index % 12 == 0 || index ==  16 ? (
+                        <div key={index} className="flex flex-col p-5 text-white">
+                            <p className='flex justify-center border-2 border-white rounded-md '>{new Date(item.dt * 1000).toLocaleString([], { year: '2-digit', month: '2-digit', day: '2-digit' })}</p>
+                            <p className='flex justify-center'>Low: {item.main.temp_min}°F</p>
+                            <p className='flex justify-center'>High: {item.main.temp_max}°F</p>
+                            <img
+                                src={`${iconUrlBase}${item.weather[0].icon}@2x.png`}
+                                alt={item.weather[0].description}
+                                className='mx-auto'
+                            />
+                            <p className='flex justify-center'>{item.weather[0].description}</p>
+                            <br></br>
+                        </div>
+                    ) : 
+                    
+                    null
+                 
                 ))}
 
             </div>
