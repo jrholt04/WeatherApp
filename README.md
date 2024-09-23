@@ -1,4 +1,4 @@
-This is my basic weather app. using react and tailwind I created a basic weather app that allows you to see the current weather and the weather of for the next 12 housr after. 
-User can enter a location (city, state)
-App displays forecast for that location over the next 5 days
-User can reset all data and start over
+have you ever wonder what the weather is like near you. well now you can with this basic weather app it makes it easy to see what the weather is like in your city or someone elses.
+ - this basic app allows you to search any city in the world and see the weather
+ - current forecast
+ - next five days forecast
